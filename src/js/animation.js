@@ -72,8 +72,10 @@ function initNavigation() {
         navCheckbox.addEventListener('change', () => {
             if (navCheckbox.checked) {
                 navLinks.classList.add('active');
+                document.body.style.overflow = 'hidden';
             } else {
                 navLinks.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
 
@@ -82,6 +84,7 @@ function initNavigation() {
             link.addEventListener('click', () => {
                 navCheckbox.checked = false;
                 navLinks.classList.remove('active');
+                document.body.style.overflow = '';
             });
         });
 
@@ -90,6 +93,7 @@ function initNavigation() {
             if (navCheckbox.checked && !navLinks.contains(e.target) && !e.target.closest('.hamburger')) {
                 navCheckbox.checked = false;
                 navLinks.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     }
