@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Strict SEO and Security -->
+    <title>Secure Login | Our Love Story</title>
+    <meta name="description" content="Secure authentication gateway for Our Love Story.">
+    <meta name="robots" content="noindex, nofollow"> <!-- Prevent indexing of login page -->
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .login-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 3rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 8px 32px var(--glass-shadow);
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .login-card h1 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--beige-darkest);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--beige-warm);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--rose-gold);
+            background: #fff;
+            box-shadow: 0 0 0 4px var(--rose-gold-glow);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 1rem;
+            background: var(--rose-gold);
+            color: #fff;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px var(--rose-gold-glow);
+            transition: all var(--transition);
+        }
+
+        .btn-login:hover {
+            background: var(--rose-gold-light);
+            transform: translateY(-2px);
+        }
+
+        #login-error {
+            color: var(--heart-pink);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-texture"></div>
+
+    <main class="login-container">
+        <div class="login-card">
+            <h1><i class="fa-solid fa-lock"
+                    style="color: var(--rose-gold); font-size: 1.5rem; margin-bottom: 1rem; display: block;"></i>
+                Authentication</h1>
+            <p>Please log in to access your memories.</p>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username" class="sr-only" style="display:none;">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Username" required
+                        autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="sr-only" style="display:none;">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required
+                        autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-login" id="login-btn">Secure Login</button>
+                <div id="login-error"></div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const btn = document.getElementById('login-btn');
+            const errorDiv = document.getElementById('login-error');
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            btn.disabled = true;
+            btn.textContent = 'Authenticating...';
+            errorDiv.style.display = 'none';
+
+            try {
+                const res = await fetch('/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    window.location.href = '/';
+                } else {
+                    errorDiv.textContent = data.error || 'Authentication failed.';
+                    errorDiv.style.display = 'block';
+                    btn.disabled = false;
+                    btn.textContent = 'Secure Login';
+                }
+            } catch (err) {
+                errorDiv.textContent = 'Network error. Please try again.';
+                errorDiv.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Secure Login';
+            }
+        });
+    </script>
+</body>
+
+</html>

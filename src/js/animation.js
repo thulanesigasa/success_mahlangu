@@ -48,7 +48,7 @@ const TIMELINE_DATA = [
     }
 ];
 
-const STORAGE_KEY = 'love_story_memories';
+// Removed STORAGE_KEY
 
 /* ─── NAVIGATION ────────────────────────── */
 
@@ -141,29 +141,32 @@ function initTimeline() {
     });
 }
 
-/* ─── MEMORIES ──────────────────────────── */
+/* ─── MEMORIES API ──────────────────────── */
 
-function getMemories() {
+async function getMemories() {
     try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    } catch {
+        const res = await fetch('/api/memories');
+        if (!res.ok) throw new Error('Failed to fetch');
+        return await res.json();
+    } catch (err) {
+        console.error(err);
         return [];
     }
 }
 
-function saveMemories(mems) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(mems));
-}
-
-function initMemories() {
-    renderMemories();
+async function initMemories() {
+    await renderMemories();
     initModal();
 }
 
-function renderMemories() {
+async function renderMemories() {
     const grid = document.getElementById('memories-grid');
     const empty = document.getElementById('memories-empty');
-    const memories = getMemories();
+
+    // Loading state
+    grid.innerHTML = '<p style="text-align:center;width:100%;">Loading memories...</p>';
+
+    const memories = await getMemories();
 
     grid.innerHTML = '';
 
@@ -211,12 +214,22 @@ function renderMemories() {
 
     // Delete handlers
     grid.querySelectorAll('.memory-delete-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', async (e) => {
             const id = btn.dataset.id;
-            if (confirm('Remove this memory?')) {
-                const mems = getMemories().filter(m => m.id !== id);
-                saveMemories(mems);
-                renderMemories();
+            if (confirm('Remove this memory from the secure database?')) {
+                try {
+                    btn.disabled = true;
+                    const res = await fetch(`/api/memories/${id}`, { method: 'DELETE' });
+                    if (res.ok) {
+                        await renderMemories();
+                    } else {
+                        alert('Failed to delete memory.');
+                        btn.disabled = false;
+                    }
+                } catch (err) {
+                    console.error(err);
+                    btn.disabled = false;
+                }
             }
         });
     });
@@ -330,17 +343,21 @@ function initModal() {
     }
 
     // Submit
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const title = document.getElementById('mem-title').value.trim();
         const date = document.getElementById('mem-date').value;
         const type = typeSelect.value;
         const content = document.getElementById('mem-text').value.trim();
+        const saveBtn = form.querySelector('button[type="submit"]');
 
         if (!title || !date) return;
 
-        const memory = {
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'Saving securely...';
+
+        const memoryPayload = {
             id: 'mem_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
             title,
             date,
@@ -349,17 +366,31 @@ function initModal() {
             mediaUrl: currentFileData || null
         };
 
-        const mems = getMemories();
-        mems.push(memory);
-        saveMemories(mems);
-        renderMemories();
-        closeModal();
+        try {
+            const res = await fetch('/api/memories', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(memoryPayload)
+            });
 
-        // Scroll to the new card
-        setTimeout(() => {
-            const grid = document.getElementById('memories-grid');
-            grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
+            if (res.ok) {
+                await renderMemories();
+                closeModal();
+                // Scroll to top of grid
+                setTimeout(() => {
+                    const grid = document.getElementById('memories-grid');
+                    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            } else {
+                alert('Failed to save memory. Note: Payloads over 10MB may be rejected by the server firewall.');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Network error while saving.');
+        } finally {
+            saveBtn.disabled = false;
+            saveBtn.textContent = 'Save Memory';
+        }
     });
 }
 

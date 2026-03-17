@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
     <title>Our Love Story | A Journey of Love & Memories</title>
-    <meta name="description" content="A beautiful love story told through moments, milestones, and treasured memories. Explore our journey together.">
+    <meta name="description"
+        content="A beautiful love story told through moments, milestones, and treasured memories. Explore our journey together and securely store memories.">
     <meta name="keywords" content="Love Story, Memories, Our Journey, Romance, Timeline, Couple">
     <meta name="author" content="Forever Yours">
     <meta name="robots" content="index, follow">
 
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Our Love Story",
+      "url": "https://success-mahlangu-birthday.com/",
+      "description": "A beautiful love story told through moments, milestones, and treasured memories.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Forever Yours"
+      }
+    }
+    </script>
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Our Love Story | A Journey of Love & Memories">
-    <meta property="og:description" content="A beautiful love story told through moments, milestones, and treasured memories.">
+    <meta property="og:description"
+        content="A beautiful love story told through moments, milestones, and treasured memories.">
     <meta property="og:image" content="statics/preview.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="Our Love Story | A Journey of Love & Memories">
-    <meta property="twitter:description" content="A beautiful love story told through moments, milestones, and treasured memories.">
+    <meta property="twitter:description"
+        content="A beautiful love story told through moments, milestones, and treasured memories.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://success-mahlangu-birthday.com/">
@@ -34,13 +53,14 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
     <!-- Background -->
     <div class="bg-texture"></div>
     <div class="particles-container" id="particles"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <!-- Navigation & Breadcrumbs -->
+    <nav class="navbar" id="navbar" aria-label="Main Navigation">
         <a href="#home" class="nav-logo">Our <span>Love</span> Story</a>
         <ul class="nav-links" id="nav-links">
             <li><a href="#home" class="active" data-section="home">Home</a></li>
@@ -54,47 +74,59 @@
         </button>
     </nav>
 
-    <!-- ═══ HOME ═══ -->
-    <section id="home" class="section hero">
-        <span class="hero-badge">♥ Our Journey Together ♥</span>
-        <h1>Every Love Story Is<br>Beautiful, But <span class="accent">Ours</span><br>Is My Favourite</h1>
-        <p class="hero-subtitle">A collection of moments, milestones, and memories that tell the story of us — from the very beginning to forever.</p>
-        <a href="#our-story" class="hero-cta">
-            <i class="fa-solid fa-heart"></i>
-            Explore Our Story
-        </a>
-        <div class="scroll-indicator">
-            <span></span>
-        </div>
-    </section>
+    <main>
+        <!-- ═══ HOME ═══ -->
+        <section id="home" class="section hero" aria-labelledby="hero-heading">
+            <!-- Breadcrumbs -->
+            <nav aria-label="Breadcrumb" class="breadcrumbs">
+                <ol>
+                    <li><a href="#home">Home</a></li>
+                    <li aria-current="page">Our Story</li>
+                </ol>
+            </nav>
 
-    <!-- ═══ OUR STORY ═══ -->
-    <section id="our-story" class="section our-story">
-        <div class="section-header reveal">
-            <h2>Our Story</h2>
-            <p>The milestones that define our journey together, one beautiful moment at a time.</p>
-            <div class="section-divider"></div>
-        </div>
-        <div class="timeline" id="timeline">
-            <!-- Timeline items injected by JS -->
-        </div>
-    </section>
+            <span class="hero-badge">♥ Our Journey Together ♥</span>
+            <h1 id="hero-heading">Every Love Story Is<br>Beautiful, But <span class="accent">Ours</span><br>Is My
+                Favourite</h1>
+            <p class="hero-subtitle">A collection of moments, milestones, and memories that tell the story of us — from
+                the very beginning to forever.</p>
+            <a href="#our-story" class="hero-cta">
+                <i class="fa-solid fa-heart"></i>
+                Explore Our Story
+            </a>
+            <div class="scroll-indicator">
+                <span></span>
+            </div>
+        </section>
 
-    <!-- ═══ MEMORIES ═══ -->
-    <section id="memories" class="section memories">
-        <div class="section-header reveal">
-            <h2>Our Memories</h2>
-            <p>The photos, videos, and words that capture what we share.</p>
-            <div class="section-divider"></div>
-        </div>
-        <div class="memories-grid" id="memories-grid">
-            <!-- Memory cards injected by JS -->
-        </div>
-        <div class="memories-empty" id="memories-empty" style="display:none;">
-            <div class="empty-icon">📸</div>
-            <p>No memories yet. Tap the <strong>+</strong> button to add your first one!</p>
-        </div>
-    </section>
+        <!-- ═══ OUR STORY ═══ -->
+        <section id="our-story" class="section our-story" aria-labelledby="story-heading">
+            <div class="section-header reveal">
+                <h2 id="story-heading">Our Story</h2>
+                <p>The milestones that define our journey together, one beautiful moment at a time.</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="timeline" id="timeline">
+                <!-- Timeline items injected by JS -->
+            </div>
+        </section>
+
+        <!-- ═══ MEMORIES ═══ -->
+        <section id="memories" class="section memories" aria-labelledby="memories-heading">
+            <div class="section-header reveal">
+                <h2 id="memories-heading">Our Memories</h2>
+                <p>The photos, videos, and words that capture what we share.</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="memories-grid" id="memories-grid">
+                <!-- Memory cards injected by JS -->
+            </div>
+            <div class="memories-empty" id="memories-empty" style="display:none;">
+                <div class="empty-icon">📸</div>
+                <p>No memories yet. Tap the <strong>+</strong> button to add your first one!</p>
+            </div>
+        </section>
+    </main>
 
     <!-- FAB -->
     <button class="fab" id="fab-add" aria-label="Add Memory" title="Add a new memory">
@@ -129,7 +161,8 @@
                 <div class="form-group" id="file-group" style="display:none;">
                     <label>Upload File</label>
                     <div class="file-upload-area" id="file-upload-area">
-                        <i class="fa-solid fa-cloud-arrow-up" style="font-size:1.5rem;margin-bottom:0.5rem;display:block;"></i>
+                        <i class="fa-solid fa-cloud-arrow-up"
+                            style="font-size:1.5rem;margin-bottom:0.5rem;display:block;"></i>
                         <span>Click or drag to upload</span>
                         <input type="file" id="mem-file" accept="image/*,video/*" style="display:none;">
                     </div>
@@ -152,4 +185,5 @@
     <!-- Scripts -->
     <script src="js/animation.js"></script>
 </body>
+
 </html>

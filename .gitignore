@@ -4,3 +4,10 @@ node_modules/
 dist/
 build/
 *.log
+
+node_modules/
+certs/
+database.sqlite
+backups/
+.env
+cookies.txt
