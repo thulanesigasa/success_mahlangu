@@ -371,31 +371,14 @@ a {
 .timeline-filter {
     display: flex;
     justify-content: center;
-    margin: 2rem auto 1rem;
+    margin: 2rem auto 1.5rem;
     max-width: 900px;
 }
 
 .filter-select-wrapper {
-    position: relative;
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(189, 147, 116, 0.4);
-    border-radius: 50px;
-    padding: 0.6rem 1.4rem;
-    gap: 0.8rem;
-    box-shadow: 0 4px 20px rgba(189, 147, 116, 0.15);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    min-width: 260px;
-    overflow: visible;
-}
-
-.filter-select-wrapper:hover,
-.filter-select-wrapper:focus-within {
-    box-shadow: 0 6px 28px rgba(189, 147, 116, 0.3);
-    border-color: var(--color-accent);
+    gap: 0.6rem;
 }
 
 .filter-select-wrapper .fa-calendar-days {
@@ -404,47 +387,36 @@ a {
     flex-shrink: 0;
 }
 
-.filter-select-wrapper .filter-arrow {
-    color: var(--color-accent);
-    font-size: 0.75rem;
-    pointer-events: none;
-    flex-shrink: 0;
-    transition: transform 0.2s ease;
-}
-
-.filter-select-wrapper:focus-within .filter-arrow {
-    transform: rotate(180deg);
-}
-
 #month-filter {
-    flex: 1;
     appearance: auto;
     -webkit-appearance: auto;
-    background: rgba(245, 240, 232, 0.9);
-    border: 1px solid rgba(189, 147, 116, 0.4);
+    background: rgba(245, 235, 220, 0.85);
+    border: 1.5px solid rgba(189, 147, 116, 0.6);
     border-radius: 50px;
-    padding: 0.4rem 1.2rem;
+    padding: 0.55rem 1.5rem;
     outline: none;
     font-family: var(--font-primary);
     font-size: 0.95rem;
-    color: var(--color-text);
+    font-weight: 500;
+    color: #5a3e36;
     cursor: pointer;
-    text-align: center;
-    min-width: 200px;
-    box-shadow: none;
+    min-width: 180px;
+    box-shadow: 0 3px 14px rgba(189, 147, 116, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+#month-filter:hover,
 #month-filter:focus {
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 2px rgba(189, 147, 116, 0.25);
+    box-shadow: 0 4px 18px rgba(189, 147, 116, 0.35);
 }
 
 #month-filter option {
-    background: #f5f0e8;
-    color: var(--color-text, #3a2e28);
-    padding: 0.5rem;
+    background: #f5ede4;
+    color: #4a2e22;
+    font-family: var(--font-primary);
+    padding: 0.4rem 0.8rem;
 }
-
 
 
 .timeline::before {
