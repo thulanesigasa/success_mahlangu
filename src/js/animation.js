@@ -4,130 +4,189 @@
  * ═══════════════════════════════════════════
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-    initNavigation();
-    initTimeline();
-    initMemories();
-    initParticles();
-    initScrollReveal();
-    initScrollSpy();
-});
-
 /* ─── DATA ──────────────────────────────── */
 
-const TIMELINE_DATA = [
-    {
-        date: 'The Beginning',
-        title: 'When We First Met',
-        description: 'The universe conspired to bring us together — and from that very first moment, everything changed.',
-        icon: '<i class="fa-solid fa-star"></i>'
-    },
-    {
-        date: 'First Chapters',
-        title: 'Getting to Know You',
-        description: 'Late night conversations, stolen glances, and the beautiful discovery of a kindred soul.',
-        icon: '<i class="fa-solid fa-comments"></i>'
-    },
-    {
-        date: 'A Turning Point',
-        title: 'The Moment I Knew',
-        description: 'There was a moment — quiet and certain — when I knew this was something extraordinary, something forever.',
-        icon: '<i class="fa-solid fa-meteor"></i>'
-    },
-    {
-        date: 'Growing Together',
-        title: 'Building Our World',
-        description: 'Through every laugh and every challenge, we built something unbreakable — a love that only grows stronger.',
-        icon: '<i class="fa-solid fa-seedling"></i>'
-    },
-    {
-        date: 'Today & Beyond',
-        title: 'Our Forever',
-        description: 'Every day with you is my favourite day. Here\'s to the rest of our story, yet to be written.',
-        icon: '<i class="fa-solid fa-heart"></i>'
-    }
-];
-
-// Removed STORAGE_KEY
+const TIMELINE_DATA = {
+    "February 2026": [
+        {
+            date: '14 Feb',
+            title: 'The First Connection',
+            description: 'Success reached out with a message that changed everything: "I\'m someone you\'d love to meet...". A spiritual vision began a journey of two souls.',
+            icon: '<i class="fa-solid fa-star"></i>'
+        },
+        {
+            date: '15 Feb',
+            title: 'First Calls & Deep Conversations',
+            description: 'Long nights of talking about faith, the five-fold ministry, and shared prophetic callings. Two souls discovering that their connection was far more than ordinary.',
+            icon: '<i class="fa-solid fa-comments"></i>'
+        },
+        {
+            date: '16 Feb',
+            title: '"Call Me Princess"',
+            description: 'On this day, a nickname was born. "Rather call me Princess," she said — and he never forgot. Their conversations deepened over theology, dreams, and building futures.',
+            icon: '<i class="fa-solid fa-crown"></i>'
+        },
+        {
+            date: '23 Feb',
+            title: 'You Are My Treasure',
+            description: '"Treasure is rare for a reason. Glad you recognized the sparkle & I found my treasure." In the quiet of the night, the depths of their feelings became undeniable.',
+            icon: '<i class="fa-solid fa-gem"></i>'
+        }
+    ],
+    "March 2026": [
+        {
+            date: '11 Mar',
+            title: 'Planning the First Visit',
+            description: '"We are moving... it\'s no longer an I thing but we\'re in it together." Thulane sent travel money — a quiet act that made everything feel real.',
+            icon: '<i class="fa-solid fa-map-location-dot"></i>'
+        },
+        {
+            date: '12 Mar',
+            title: 'She Took the Taxi to Springs',
+            description: 'Success navigated her way alone from Standerton to Springs. The moment she arrived, he left work immediately — nothing else mattered. Two hearts finally in the same city.',
+            icon: '<i class="fa-solid fa-bus-simple"></i>'
+        },
+        {
+            date: '13 Mar',
+            title: 'First Day Together',
+            description: 'Their first full day under the same roof — cooking together, laughing over Mdm Sketch Comedy, and the warmth of finally being near each other after weeks of longing.',
+            icon: '<i class="fa-solid fa-house-heart"></i>'
+        },
+        {
+            date: '15 Mar',
+            title: 'The Bittersweet Goodbye',
+            description: '"Bye Husband," she typed, heart sore. "I madly love you," he replied. She left with his warmth in her heart and the promise of a soon reunion on her lips.',
+            icon: '<i class="fa-solid fa-heart-crack"></i>'
+        }
+    ]
+};
 
 /* ─── NAVIGATION ────────────────────────── */
 
 function initNavigation() {
-    const navbar = document.getElementById('navbar');
-    const toggle = document.getElementById('nav-toggle');
-    const links = document.getElementById('nav-links');
-    const allLinks = links.querySelectorAll('a');
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
 
-    // Scroll: add shadow to navbar
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 40);
-    });
-
-    // Mobile toggle
-    toggle.addEventListener('click', () => {
-        links.classList.toggle('open');
-    });
-
-    // Close mobile menu on link click
-    allLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            links.classList.remove('open');
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
-    });
+
+        // Close mobile nav on click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
 }
 
-/* ─── SCROLL SPY ────────────────────────── */
+function initCommon() {
+    initParticles();
+    initNavigation();
+    initRevealOnScroll();
+}
 
-function initScrollSpy() {
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const fab = document.getElementById('fab-add');
-
+function initRevealOnScroll() {
+    const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const id = entry.target.id;
-                navLinks.forEach(l => l.classList.remove('active'));
-                const activeLink = document.querySelector(`.nav-links a[data-section="${id}"]`);
-                if (activeLink) activeLink.classList.add('active');
-
-                // Show FAB only in memories section
-                if (id === 'memories') {
-                    fab.classList.add('visible');
-                } else {
-                    fab.classList.remove('visible');
-                }
+                entry.target.classList.add('visible');
             }
         });
-    }, {
-        threshold: 0.35
-    });
+    }, { threshold: 0.15 });
 
-    sections.forEach(s => observer.observe(s));
+    reveals.forEach(r => observer.observe(r));
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    initCommon();
+
+    // Page-specific initialization
+    if (document.getElementById('timeline')) {
+        initTimeline();
+    }
+    if (document.getElementById('memories-grid')) {
+        initMemories();
+    }
+});
+
+/* ─── SCROLL SPY (Legacy) ─── */
+function initScrollSpy() { }
+
 
 /* ─── TIMELINE ──────────────────────────── */
 
 function initTimeline() {
     const container = document.getElementById('timeline');
+    const filterSelect = document.getElementById('month-filter');
     if (!container) return;
 
-    TIMELINE_DATA.forEach((item, i) => {
-        const el = document.createElement('div');
-        el.classList.add('timeline-item');
-        el.innerHTML = `
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-                <div class="timeline-icon">${item.icon}</div>
-                <span class="timeline-date">${item.date}</span>
-                <h3>${item.title}</h3>
-                <p>${item.description}</p>
-            </div>
-        `;
-        container.appendChild(el);
+    // Populate dropdown from data keys
+    if (filterSelect) {
+        Object.keys(TIMELINE_DATA).forEach(month => {
+            const option = document.createElement('option');
+            option.value = month;
+            option.textContent = month;
+            filterSelect.appendChild(option);
+        });
+    }
+
+    // Render all month sections
+    Object.entries(TIMELINE_DATA).forEach(([month, items]) => {
+        // Month group wrapper
+        const group = document.createElement('div');
+        group.classList.add('timeline-month-group');
+        group.setAttribute('data-month', month);
+
+        // Month Header
+        const monthHeader = document.createElement('h2');
+        monthHeader.classList.add('month-divider', 'reveal');
+        monthHeader.textContent = month;
+        group.appendChild(monthHeader);
+
+        // Timeline Items
+        items.forEach(item => {
+            const el = document.createElement('div');
+            el.classList.add('timeline-item');
+            el.innerHTML = `
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">${item.icon}</div>
+                    <span class="timeline-date">${item.date}</span>
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            `;
+            group.appendChild(el);
+        });
+
+        container.appendChild(group);
     });
 
-    // Animate timeline items on scroll
+    // Filter logic
+    if (filterSelect) {
+        filterSelect.addEventListener('change', () => {
+            const selected = filterSelect.value;
+            container.querySelectorAll('.timeline-month-group').forEach(group => {
+                if (selected === 'all' || group.dataset.month === selected) {
+                    group.style.display = '';
+                    // Re-trigger scroll observer for newly visible items
+                    group.querySelectorAll('.timeline-item, .reveal').forEach(el => {
+                        el.classList.remove('visible');
+                        setTimeout(() => timelineObserver.observe(el), 50);
+                    });
+                } else {
+                    group.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // Animate timeline items + reveals on scroll
     const timelineObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -136,7 +195,7 @@ function initTimeline() {
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-    container.querySelectorAll('.timeline-item').forEach(item => {
+    container.querySelectorAll('.timeline-item, .reveal').forEach(item => {
         timelineObserver.observe(item);
     });
 }

@@ -63,8 +63,8 @@
     <nav class="navbar" id="navbar" aria-label="Main Navigation">
         <a href="#home" class="nav-logo">Our <span>Love</span> Story</a>
         <ul class="nav-links" id="nav-links">
-            <li><a href="/" class="active">Home</a></li>
-            <li><a href="/story">Our Story</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/story" class="active">Our Story</a></li>
             <li><a href="/memories">Memories</a></li>
             <li><a href="/auth/logout" class="nav-logout-btn"><i class="fa-solid fa-right-from-bracket"></i></a></li>
         </ul>
@@ -76,28 +76,36 @@
     </nav>
 
     <main>
-        <!-- ═══ HOME ═══ -->
-        <section id="home" class="section hero" aria-labelledby="hero-heading">
-            <span class="hero-badge"><i class="fa-solid fa-heart"></i> Our Journey Together <i
-                    class="fa-solid fa-heart"></i></span>
-            <h1 id="hero-heading">Every Love Story Is<br>Beautiful, But <span class="accent">Ours</span><br>Is My
-                Favourite</h1>
-            <p class="hero-subtitle">A collection of moments, milestones, and memories that tell the story of us — from
-                the very beginning to forever.</p>
-            <a href="#our-story" class="hero-cta">
-                <i class="fa-solid fa-heart"></i>
-                Explore Our Story
-            </a>
-            <div class="scroll-indicator">
-                <span></span>
+        <!-- Home section removed -->
+
+        <!-- ═══ OUR STORY ═══ -->
+        <section id="our-story" class="section our-story" aria-labelledby="story-heading">
+            <div class="section-header reveal">
+                <h2 id="story-heading">Our Story</h2>
+                <p>The milestones that define our journey together, one beautiful moment at a time.</p>
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- Month Filter -->
+            <div class="timeline-filter reveal">
+                <div class="filter-select-wrapper">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <select id="month-filter" aria-label="Filter by month">
+                        <option value="all">All Months</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down filter-arrow"></i>
+                </div>
+            </div>
+
+            <div class="timeline" id="timeline">
+                <!-- Timeline items injected by JS -->
             </div>
         </section>
+
+        <!-- Memories section removed -->
     </main>
 
-    <!-- FAB -->
-    <button class="fab" id="fab-add" aria-label="Add Memory" title="Add a new memory">
-        <i class="fa-solid fa-plus"></i>
-    </button>
+    <!-- FAB removed -->
 
     <!-- ═══ ADD MEMORY MODAL ═══ -->
     <div class="modal-overlay" id="modal-overlay">

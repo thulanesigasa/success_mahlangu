@@ -127,7 +127,7 @@ app.post('/auth/logout', (req, res) => {
 });
 
 // ==========================================
-// PUBLIC & PROTECTED STATIC FILES
+// PAGE ROUTES & STATIC FILES
 // ==========================================
 
 // Serve Login strictly separate
@@ -136,16 +136,33 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'src', 'login.html'));
 });
 
-// Serve assets freely (CSS, JS, images)
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'src'), {
-    index: false // disable automatic index.html resolution
-}));
-
-// Protect the main app interface
+// Home Page (Protected)
 app.get('/', requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, 'src', 'index.html'));
 });
+
+// Story Page (Protected)
+app.get('/story', requireAuth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'story.html'));
+});
+
+// Memories Page (Protected)
+app.get('/memories', requireAuth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'memories.html'));
+});
+
+// Protected static files (prevent direct browsing to index.html/story.html/memories.html)
+app.use((req, res, next) => {
+    if (req.path.endsWith('.html') && req.path !== '/login.html' && !req.session.user) {
+        return res.redirect('/login');
+    }
+    next();
+});
+
+// General static files
+app.use(express.static(path.join(__dirname, 'src')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/statics', express.static(path.join(__dirname, 'statics')));
 
 
 // ==========================================

@@ -63,9 +63,9 @@
     <nav class="navbar" id="navbar" aria-label="Main Navigation">
         <a href="#home" class="nav-logo">Our <span>Love</span> Story</a>
         <ul class="nav-links" id="nav-links">
-            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/story">Our Story</a></li>
-            <li><a href="/memories">Memories</a></li>
+            <li><a href="/memories" class="active">Memories</a></li>
             <li><a href="/auth/logout" class="nav-logout-btn"><i class="fa-solid fa-right-from-bracket"></i></a></li>
         </ul>
         <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
@@ -76,20 +76,19 @@
     </nav>
 
     <main>
-        <!-- ═══ HOME ═══ -->
-        <section id="home" class="section hero" aria-labelledby="hero-heading">
-            <span class="hero-badge"><i class="fa-solid fa-heart"></i> Our Journey Together <i
-                    class="fa-solid fa-heart"></i></span>
-            <h1 id="hero-heading">Every Love Story Is<br>Beautiful, But <span class="accent">Ours</span><br>Is My
-                Favourite</h1>
-            <p class="hero-subtitle">A collection of moments, milestones, and memories that tell the story of us — from
-                the very beginning to forever.</p>
-            <a href="#our-story" class="hero-cta">
-                <i class="fa-solid fa-heart"></i>
-                Explore Our Story
-            </a>
-            <div class="scroll-indicator">
-                <span></span>
+        <!-- ═══ MEMORIES ═══ -->
+        <section id="memories" class="section memories" aria-labelledby="memories-heading">
+            <div class="section-header reveal">
+                <h2 id="memories-heading">Our Memories</h2>
+                <p>The photos, videos, and words that capture what we share.</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="memories-grid" id="memories-grid">
+                <!-- Memory cards injected by JS -->
+            </div>
+            <div class="memories-empty" id="memories-empty" style="display:none;">
+                <div class="empty-icon"><i class="fa-solid fa-camera"></i></div>
+                <p>No memories yet. Tap the <strong>+</strong> button to add your first one!</p>
             </div>
         </section>
     </main>
