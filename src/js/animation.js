@@ -64,21 +64,33 @@ const TIMELINE_DATA = {
 /* ─── NAVIGATION ────────────────────────── */
 
 function initNavigation() {
-    const navToggle = document.getElementById('nav-toggle');
+    const navCheckbox = document.getElementById('nav-checkbox');
     const navLinks = document.getElementById('nav-links');
 
-    if (navToggle && navLinks) {
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
+    if (navCheckbox && navLinks) {
+        // Toggle menu on checkbox change
+        navCheckbox.addEventListener('change', () => {
+            if (navCheckbox.checked) {
+                navLinks.classList.add('active');
+            } else {
+                navLinks.classList.remove('active');
+            }
         });
 
-        // Close mobile nav on click
+        // Close mobile nav on link click
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
+                navCheckbox.checked = false;
                 navLinks.classList.remove('active');
             });
+        });
+
+        // Close menu if user clicks outside
+        document.addEventListener('click', (e) => {
+            if (navCheckbox.checked && !navLinks.contains(e.target) && !e.target.closest('.hamburger')) {
+                navCheckbox.checked = false;
+                navLinks.classList.remove('active');
+            }
         });
     }
 }
