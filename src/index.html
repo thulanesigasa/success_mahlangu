@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Premium SEO Meta Tags -->
-    <title>Happy Birthday Success Mahlangu | A Special Romantic Surprise</title>
-    <meta name="description" content="A romantic and heartfelt birthday celebration for Success Mahlangu. Discover a world of love, animations, and special messages created just for you.">
-    <meta name="keywords" content="Success Mahlangu, Birthday, Romantic, Surprise, Love, Celebration, Stickman Animation, Soulmate">
-    <meta name="author" content="Your Soulmate">
+
+    <!-- SEO Meta Tags -->
+    <title>Our Love Story | A Journey of Love & Memories</title>
+    <meta name="description" content="A beautiful love story told through moments, milestones, and treasured memories. Explore our journey together.">
+    <meta name="keywords" content="Love Story, Memories, Our Journey, Romance, Timeline, Couple">
+    <meta name="author" content="Forever Yours">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://success-mahlangu-birthday.com/">
-    <meta property="og:title" content="Happy Birthday Success Mahlangu | A Special Romantic Surprise">
-    <meta property="og:description" content="A romantic and heartfelt birthday celebration for Success Mahlangu. Discover a world of love, animations, and special messages.">
-    <meta property="og:image" content="https://success-mahlangu-birthday.com/statics/preview.jpg">
+    <meta property="og:title" content="Our Love Story | A Journey of Love & Memories">
+    <meta property="og:description" content="A beautiful love story told through moments, milestones, and treasured memories.">
+    <meta property="og:image" content="statics/preview.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://success-mahlangu-birthday.com/">
-    <meta property="twitter:title" content="Happy Birthday Success Mahlangu | A Special Romantic Surprise">
-    <meta property="twitter:description" content="A romantic and heartfelt birthday celebration for Success Mahlangu. Discover a world of love, animations, and special messages.">
-    <meta property="twitter:image" content="https://success-mahlangu-birthday.com/statics/preview.jpg">
+    <meta property="twitter:title" content="Our Love Story | A Journey of Love & Memories">
+    <meta property="twitter:description" content="A beautiful love story told through moments, milestones, and treasured memories.">
 
-    <!-- Canonical Tag -->
+    <!-- Canonical -->
     <link rel="canonical" href="https://success-mahlangu-birthday.com/">
 
     <!-- Favicon -->
@@ -33,37 +30,124 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <div class="background-overlay"></div>
-    
-    <main id="app">
-        <header class="hero">
-            <h1 class="fade-in">Happy Birthday, <span class="highlight">Success Mahlangu</span></h1>
-            <p class="subtitle fade-in-delay">A journey of love, just for you.</p>
-        </header>
+    <!-- Background -->
+    <div class="bg-texture"></div>
+    <div class="particles-container" id="particles"></div>
 
-        <section class="animation-container">
-            <div id="stickman-animation">
-                <!-- SVG Stickman will be injected here -->
-            </div>
-        </section>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="#home" class="nav-logo">Our <span>Love</span> Story</a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home" class="active" data-section="home">Home</a></li>
+            <li><a href="#our-story" data-section="our-story">Our Story</a></li>
+            <li><a href="#memories" data-section="memories">Memories</a></li>
+        </ul>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
 
-        <section class="message-box glass">
-            <div class="content">
-                <h2 class="dancing-font">My Dearest Success,</h2>
-                <p>On this special day, I wanted to create something as unique and beautiful as you are. You bring so much joy and light into my life, and I am grateful for every moment we spend together.</p>
-                <p>May your day be filled with laughter, love, and all the things that make you happy. You deserve the world and more.</p>
-                <p class="signature dancing-font">With all my love,</p>
-                <p class="signature-name">Forever Yours</p>
-            </div>
-        </section>
+    <!-- ═══ HOME ═══ -->
+    <section id="home" class="section hero">
+        <span class="hero-badge">♥ Our Journey Together ♥</span>
+        <h1>Every Love Story Is<br>Beautiful, But <span class="accent">Ours</span><br>Is My Favourite</h1>
+        <p class="hero-subtitle">A collection of moments, milestones, and memories that tell the story of us — from the very beginning to forever.</p>
+        <a href="#our-story" class="hero-cta">
+            <i class="fa-solid fa-heart"></i>
+            Explore Our Story
+        </a>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
 
-        <div class="floating-hearts"></div>
-    </main>
+    <!-- ═══ OUR STORY ═══ -->
+    <section id="our-story" class="section our-story">
+        <div class="section-header reveal">
+            <h2>Our Story</h2>
+            <p>The milestones that define our journey together, one beautiful moment at a time.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="timeline" id="timeline">
+            <!-- Timeline items injected by JS -->
+        </div>
+    </section>
+
+    <!-- ═══ MEMORIES ═══ -->
+    <section id="memories" class="section memories">
+        <div class="section-header reveal">
+            <h2>Our Memories</h2>
+            <p>The photos, videos, and words that capture what we share.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="memories-grid" id="memories-grid">
+            <!-- Memory cards injected by JS -->
+        </div>
+        <div class="memories-empty" id="memories-empty" style="display:none;">
+            <div class="empty-icon">📸</div>
+            <p>No memories yet. Tap the <strong>+</strong> button to add your first one!</p>
+        </div>
+    </section>
+
+    <!-- FAB -->
+    <button class="fab" id="fab-add" aria-label="Add Memory" title="Add a new memory">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+
+    <!-- ═══ ADD MEMORY MODAL ═══ -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <h2><i class="fa-solid fa-heart"></i> Add a Memory</h2>
+            <form id="memory-form">
+                <div class="form-group">
+                    <label for="mem-title">Title</label>
+                    <input type="text" id="mem-title" placeholder="e.g. Our First Date" required>
+                </div>
+                <div class="form-group">
+                    <label for="mem-date">Date</label>
+                    <input type="date" id="mem-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="mem-type">Type</label>
+                    <select id="mem-type">
+                        <option value="text">📝 Text</option>
+                        <option value="photo">📷 Photo</option>
+                        <option value="video">🎥 Video</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mem-text">Description / Caption</label>
+                    <textarea id="mem-text" placeholder="Write something from the heart..."></textarea>
+                </div>
+                <div class="form-group" id="file-group" style="display:none;">
+                    <label>Upload File</label>
+                    <div class="file-upload-area" id="file-upload-area">
+                        <i class="fa-solid fa-cloud-arrow-up" style="font-size:1.5rem;margin-bottom:0.5rem;display:block;"></i>
+                        <span>Click or drag to upload</span>
+                        <input type="file" id="mem-file" accept="image/*,video/*" style="display:none;">
+                    </div>
+                    <img class="file-preview" id="file-preview" style="display:none;" alt="Preview">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Memory</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="site-footer">
+        <p class="footer-quote">"In all the world, there is no heart for me like yours."</p>
+        <p class="footer-copy">Made with ♥ — Our Love Story</p>
+    </footer>
 
     <!-- Scripts -->
     <script src="js/animation.js"></script>
