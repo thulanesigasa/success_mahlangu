@@ -112,6 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('memories-grid')) {
         initMemories();
     }
+
+    // Show FAB if it exists
+    const fab = document.getElementById('fab-add');
+    if (fab) {
+        setTimeout(() => fab.classList.add('visible'), 500);
+    }
 });
 
 /* ─── SCROLL SPY (Legacy) ─── */
@@ -214,6 +220,15 @@ async function getMemories() {
 }
 
 async function initMemories() {
+    const empty = document.getElementById('memories-empty');
+    if (empty) {
+        empty.addEventListener('click', () => {
+            const fab = document.getElementById('fab-add');
+            if (fab) fab.click();
+        });
+        empty.style.cursor = 'pointer';
+    }
+
     await renderMemories();
     initModal();
 }
