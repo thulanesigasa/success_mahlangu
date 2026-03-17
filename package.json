@@ -4,6 +4,9 @@
   "description": "A premium, SEO-optimized, romantic birthday website built with Vanilla HTML, CSS, and JS, featuring stickman animations.",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "certs": "./scripts/generate-certs.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

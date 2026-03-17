@@ -20,31 +20,31 @@ const TIMELINE_DATA = [
         date: 'The Beginning',
         title: 'When We First Met',
         description: 'The universe conspired to bring us together — and from that very first moment, everything changed.',
-        icon: '✨'
+        icon: '<i class="fa-solid fa-star"></i>'
     },
     {
         date: 'First Chapters',
         title: 'Getting to Know You',
         description: 'Late night conversations, stolen glances, and the beautiful discovery of a kindred soul.',
-        icon: '💬'
+        icon: '<i class="fa-solid fa-comments"></i>'
     },
     {
         date: 'A Turning Point',
         title: 'The Moment I Knew',
         description: 'There was a moment — quiet and certain — when I knew this was something extraordinary, something forever.',
-        icon: '💫'
+        icon: '<i class="fa-solid fa-meteor"></i>'
     },
     {
         date: 'Growing Together',
         title: 'Building Our World',
         description: 'Through every laugh and every challenge, we built something unbreakable — a love that only grows stronger.',
-        icon: '🌱'
+        icon: '<i class="fa-solid fa-seedling"></i>'
     },
     {
         date: 'Today & Beyond',
         title: 'Our Forever',
         description: 'Every day with you is my favourite day. Here\'s to the rest of our story, yet to be written.',
-        icon: '♥️'
+        icon: '<i class="fa-solid fa-heart"></i>'
     }
 ];
 
@@ -237,9 +237,9 @@ async function renderMemories() {
 
 function getTypeBadge(type) {
     switch (type) {
-        case 'photo': return '📷 Photo';
-        case 'video': return '🎥 Video';
-        default: return '📝 Text';
+        case 'photo': return '<i class="fa-solid fa-camera"></i> Photo';
+        case 'video': return '<i class="fa-solid fa-video"></i> Video';
+        default: return '<i class="fa-solid fa-pen"></i> Text';
     }
 }
 
